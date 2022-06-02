@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title> <%= pageTitle %> </title>
+    <%/*We include the CSS*/ %> 
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+</head>
+<body>
+    <%- include("includes/navbar.ejs")%> <%/*We include navbar*/ %> 
+
+    <div class="container" id="row-container">  <%/*div row-container  -> sets other divs in a row*/%> 
+        <div class="row" id="row">
+            <div class="col-md-4">
+                <div class="card" id="card-container-layout">
+                    <div class="card-body" id="card">
+                        <h4 class="card-title">View Project by Reserachers</h4>
+                        <p class="card-text" id="paragraph">Simple Query to database to show all the projects by Researcher</p>
+                        <a class="btn btn-primary" id="show-btn" href="/projects/by_researcher">Show</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card" id="card-container-layout">
+                    <div class="card-body" id="card">
+                        <h4 class="card-title">View Project by Executives</h4>
+                        <p class="card-text" id="paragraph">Simple Query to database to show all the projects by Executives</p>
+                        <a class="btn btn-primary" id="show-btn" href="/projects/by_executive">Show</a>
+                    </div>
+                </div>
+            </div>
+        </div>       
+    </div>
+
+</body>
+</html>
