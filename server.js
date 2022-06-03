@@ -9,6 +9,7 @@ require('custom-env').env('localhost');     // Use as enviroment file the .env.l
 // import routes
 const projects = require('./routes/projects');
 const programs = require('./routes/programs');
+const sci_field = require('./routes/sci_field');
 
 server.set('view engine', 'ejs'); 
 server.use(express.static('public'));       // static files are in public (CSS,html)
@@ -27,6 +28,7 @@ server.use('/projects',projects)            // for all the requests (to /project
 
 server.use('/programs',programs)            // for all the requests (to /projects) use projects  
 
+server.use('/sci_field',sci_field)
 
 server.use(function (req,res,next){
 	res.render ("404", { pageTitle: '404' }) // in the parameter page title at the 404.ejs put 404
