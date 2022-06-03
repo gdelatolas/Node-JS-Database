@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <%- include("includes/navbar.ejs")%> <%/*We include navbar*/ %> 
@@ -45,14 +45,53 @@
         </div>
         
     </div>
-    <% 
-        /*if the variable query res*/
-        if(locals.query_res){ %>
+    
+        <%/*if the variable query res*/%>
+        <%if(locals.query_res){ %>
+            <% /*HTML*/ %>
             <div class="container">
-                <p>Hello!</p>
+                <div class="row" id="row">
+                    <div class="col-md-12">
+                        <div class="card" id="card-container">
+                            <div class="card-body" id="card">
+                                <% if (query_res.length == 0) { %> 
+                                    <h1 style="margin-top: 5rem;">There are not Programs and Projects with these criteria !</h1>
+                                <% } else { %>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                <th>Program id</th>
+                                                <th>Program name</th>
+                                                <th>Project id</th>
+                                                <th>Project title</th>
+                                                <th></th>    
+                                            </tr>
+                                            </thead>
+                                        <tbody>
+                                        <% query_res.forEach((i, _) => { %>
+                                        <tr>
+                                            <td><%= i.program_id %></td>
+                                            <td><%= i.program_name %></td>
+                                            <td><%= i.project_id %></td>
+                                            <td><%= i.title %></td>
+                                            <form method="GET" action="/projects/<%=+i.project_id %>">
+                                                <td> 
+                                                    <button style="all: unset; cursor: pointer;" type="submit"><i class="fa fa-hand-o-left"></i></button>
+                                                </td>
+                                            </form>
+                                        </tr>
+                                        <% }) %>
+                                        </tbody>
+                                        </table>
+                                    </div>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        <%}
-    %> 
+        <%}%> 
    
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 

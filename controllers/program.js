@@ -15,7 +15,7 @@ exports.postProgramsByCriteria = (req, res, next) => {
     const exec_id = req.body.exec_id;
 
     /*
-    select program.program_id , p.project_id
+    select program.program_id ,program.program_name , p.project_id, p.title
     from program join project p
     on program.program_id = p.program_id
     where 
@@ -23,7 +23,7 @@ exports.postProgramsByCriteria = (req, res, next) => {
         duration = 3 and
         executive_id = 1
     */
-    var sql="select program.program_id , p.project_id "+
+    var sql="select program.program_id ,program.program_name , p.project_id, p.title "+
         "from program join project p "+
         "on program.program_id = p.program_id "+
         "where 1=1 ";
@@ -32,9 +32,10 @@ exports.postProgramsByCriteria = (req, res, next) => {
     
     if (date !== ''){
         
-        date_cond=" and start_date>="+date
+        date_cond=" and p.start_date >= '"+date +"' ";
     }
 
+    
     var duration_cond = "";
     if (typeof duration !== 'undefined'){
         duration_cond= " and duration ="+duration

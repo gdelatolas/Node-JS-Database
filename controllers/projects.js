@@ -45,6 +45,27 @@ exports.getPorjectsByExecutive = (req, res, next) => {
         .then(() => pool.releaseConnection(conn))
         .catch(err => console.log(err))
     });
-    
-
 }
+    
+exports.getResearchers = (req, res, next) => {
+    pool.getConnection((err, conn) => {
+        if(err){
+            console.log(err);
+        }
+        conn.promise().query(`select  w.researcher_id , r.researcher_name `+
+        `from worksatproject w join researcher r on r.researcher_id = w.researcher_id `+
+        `where w.project_id = ${req.params.project_id}`)
+        .then(([rows, fields]) => {
+            res.render('project_researchers.ejs', {
+                pageTitle: "Researchers of the Project",
+                query_res: rows,
+                //messages: messages
+            })
+            //resolve();
+        })
+        .then(() => pool.releaseConnection(conn))
+        .catch(err => console.log(err))
+    
+    
+    });
+ }
