@@ -59,9 +59,7 @@ exports.postProgramsByCriteria = (req, res, next) => {
             res.render('programs_by_criteria.ejs', {
                 pageTitle: "QUERY 1",
                 query_res: rows
-                //messages: messages
             })
-            //resolve();
         })
         .then(() => pool.releaseConnection(conn))
         .catch(err => console.log(err))
