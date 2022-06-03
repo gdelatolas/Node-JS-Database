@@ -13,8 +13,7 @@
 <body>
     <%- include("includes/navbar.ejs")%> <%/*We include navbar*/ %> 
 
-    <div class="container" id="row-container">  <%/*div row-container  -> sets other divs in a row*/%> 
-        
+    <div class="container" id="row-container">  <%/*div row-container  -> sets other divs in a row*/%>  
         <div class="row" id="row">
             <%/*QUERY 1*/%> 
             <div class="col-md-4">
@@ -59,6 +58,17 @@
                     </div>
                 </div>
             </div>
+            <%/*QUERY 4*/%>
+            <div class="col-md-4">
+                <div class="card" id="card-container-layout">
+                    <div class="card-body" id="card">
+                        <h4 class="card-title">Query 4</h4>
+                        <p class="card-text" id="paragraph">Query to show the answer to 3.4</p>
+                        <a class="btn btn-primary" id="show-btn" href="/org/same">Show</a>
+                    </div>
+                </div>
+            </div>
+            
         </div>       
     </div>
 
