@@ -33,14 +33,26 @@
                         <input type="radio" id="4" name="duration" value="4">
                         <label for="4">4</label>
                     </div>
-
                     
+                    <div class="form-group col-sm-3 mb-3">
+                        <label for="exec_id">Executive id</label>
+                        <input type="number" id="exec_id" name="exec_id" min="1" placeholder="Enter executive id">
+                    </div>
+            
                     <button type="submit" class="btn btn-primary btn-submit-custom">Submit</button>
                 </form>
             </div>
         </div>
         
     </div>
+    <% 
+        /*if the variable query res*/
+        if(locals.query_res){ %>
+            <div class="container">
+                <p>Hello!</p>
+            </div>
+        <%}
+    %> 
    
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 
