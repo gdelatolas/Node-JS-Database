@@ -10,7 +10,7 @@ require('custom-env').env('localhost');     // Use as enviroment file the .env.l
 const projects = require('./routes/projects');
 const programs = require('./routes/programs');
 const sci_field = require('./routes/sci_field');
-const org = require('./routes/org');
+const organizations = require('./routes/organizations');
 const exec = require('./routes/exec');
 
 server.set('view engine', 'ejs'); 
@@ -32,7 +32,8 @@ server.use('/programs',programs)            // for all the requests (to /project
 
 server.use('/sci_field',sci_field)
 
-server.use('/org',org)
+server.use('/organizations', organizations); // for all the requests (to /organizations) to use organizations
+
 
 server.use('/exec',exec) 
 

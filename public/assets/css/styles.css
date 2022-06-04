@@ -11,6 +11,12 @@
   border-radius: 16px;
 }
 
+#show-btn:hover {
+  color: rgb(21, 21, 100);
+  background: white;
+  transition: 0.3s ease;
+}
+
 #card {
   text-align: center;
 }

@@ -44,6 +44,43 @@ exports.getTop = (req, res, next) => {
         .catch(err => console.log(err))
     });
 }
+exports.getRes = (req, res, next) => {
+    pool.getConnection((err, conn) => {
+        if(err){
+            console.log(err);
+        }
+        // a promise can succeed or fail.
+        conn.promise().query(
+        "SELECT wap.researcher_id, COUNT(out1.project_id) AS Number_of_Valid_Projects " +
+        "FROM( " +
+            "( " +
+            "SELECT p.project_id " +
+            "FROM Project p " +
+            "WHERE 	DATEDIFF(p.end_date, CURRENT_DATE) > 0 AND " +
+                    "DATEDIFF(p.start_date, CURRENT_DATE) < 0 " +
+            "EXCEPT " +
+            "SELECT d.project_id " +
+            "FROM Deliverable d " +
+            ") AS out1 " +
+            "INNER JOIN WorksAtProject wap ON out1.project_id = wap.project_id  " +   
+        ") " +
+        "GROUP BY wap.researcher_id " +
+        "ORDER BY Number_of_Valid_Projects DESC " +
+        "LIMIT 5")
+        .then(([rows, fields]) => {
+            res.render('query3_8.ejs', {
+                pageTitle: "Researchers",
+                query_res: rows,
+                //messages: messages
+            })
+            //resolve();
+        })
+        .then(() => pool.releaseConnection(conn))
+        .catch(err => console.log(err))
+    });
+
+
+}
 
 exports.getPorjectsByResearcher = (req, res, next) => {
     pool.getConnection((err, conn) => {
