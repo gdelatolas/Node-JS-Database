@@ -7,6 +7,43 @@ exports.getSci_fieldWithInterest = (req, res, next) => {
     })
 }
 
+exports.getTop3 = (req, res, next) => {
+
+    
+   pool.getConnection((err, conn) => {
+        if(err){
+            console.log(err);
+        }
+        conn.promise().query("SELECT r1.sc1, r1.sc2, COUNT(*) AS cc " + 
+                            "FROM( " +
+                            "SELECT " +
+                            "rel1.scientific_field_name AS sc1, rel2.scientific_field_name AS sc2 " +
+                            "FROM " +
+                            "Relates rel1 " +
+                            "INNER JOIN Relates rel2 ON rel1.project_id = rel2.project_id " +
+                            "WHERE " +
+                            "rel1.scientific_field_name > rel2.scientific_field_name " +
+                            ") r1 " +
+                            "GROUP BY r1.sc1, r1.sc2 " +
+                            "ORDER BY cc DESC " +			
+                            "LIMIT 3 " )					
+                            
+        .then(([rows, fields]) => {
+            res.render('project_top3.ejs', {
+                pageTitle: "QUERY 3.5",
+                query_res: rows,
+                //messages: messages
+            })
+            //resolve();
+        })
+        .then(() => pool.releaseConnection(conn))
+        .catch(err => console.log(err))
+    
+    
+    })
+ }
+ 
+
 exports.postSci_fieldWithInterest = (req, res, next) => {
     
     const sci_name = req.body.sci_name;

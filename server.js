@@ -11,6 +11,7 @@ const projects = require('./routes/projects');
 const programs = require('./routes/programs');
 const sci_field = require('./routes/sci_field');
 const org = require('./routes/org');
+const exec = require('./routes/exec');
 
 server.set('view engine', 'ejs'); 
 server.use(express.static('public'));       // static files are in public (CSS,html)
@@ -32,6 +33,8 @@ server.use('/programs',programs)            // for all the requests (to /project
 server.use('/sci_field',sci_field)
 
 server.use('/org',org)
+
+server.use('/exec',exec) 
 
 
 server.use(function (req,res,next){
