@@ -17,6 +17,21 @@
   transition: 0.3s ease;
 }
 
+#tables-btn {
+  background-color: var(--bs-indigo);
+  color: #fff;
+  border-radius: 16px;
+  align-items: center;
+  margin-top: 20px;
+  padding-left: 750px;
+}
+
+#tables-btn:hover {
+  color: rgb(21, 21, 100);
+  background: white;
+  transition: 0.3s ease;
+}
+
 #card {
   text-align: center;
 }
@@ -50,6 +65,15 @@
   min-height: 250px;
   border-radius: 32px;
   max-width: 850px;
+  margin: auto;
+  background-color: rgba(18,49,126,0.23);
+}
+
+#card-container_new {
+  min-height: 250px;
+  border-radius: 32px;
+  /*max-width: 4000px;*/
+  width: fit-content;
   margin: auto;
   background-color: rgba(18,49,126,0.23);
 }

@@ -13,7 +13,10 @@
 <body>
     <%- include("includes/navbar.ejs")%> <%/*We include navbar*/ %> 
 
+    
     <div class="container" id="row-container">  <%/*div row-container  -> sets other divs in a row*/%>  
+        <%/*Tables btn*/%>
+        <a class="btn btn-sec" id="tables-btn" href="/tables">Tables</a>
         <div class="row" id="row">
             <%/*QUERY 1*/%> 
             <div class="col-md-4">
@@ -109,6 +112,44 @@
             </div>
          </div>       
     </div>
+
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            toastr.options = {
+                "closeButton": true,
+                "positionClass": "toast-bottom-right",
+                "preventDuplicates": false
+            };
+            /* In order to access variables sent to ejs file to script you must Parse them to string */
+            /* then to parse them back to JSON */
+            
+            let messages = '<%- JSON.stringify(messages) %>';
+            messages = JSON.parse(messages);
+            messages.forEach(({
+                type,
+                value
+            }) => {
+                switch (type) {
+                    case 'error':
+                        toastr.error(value)
+                        break;
+                    case 'success':
+                        toastr.success(value)
+                        break;
+                    case 'warning':
+                        toastr.warning(value)
+                        break;
+                    default:
+                        toastr.info(value)
+                        break;
+                }
+            });
+        })
+    </script>
 
 </body>
 </html>
